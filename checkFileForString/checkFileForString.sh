@@ -23,14 +23,11 @@ function checkAllFiles() {
     # 2 - extension of files
     # 3 - string to check
     # 4 - default: false - display error message yes (true) or no (false)
-    declare -a arraySuccess
     declare -a arrayFail
     for filename in $(find $1 -type f -name "*.$2")
     do
-        if checkFileForString $filename "$3"
+        if ! checkFileForString $filename "$3"
         then
-            arraySuccess+=( $filename )
-        else
             arrayFail+=( $filename )
         fi
     done
